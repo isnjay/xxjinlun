@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人网页</title>
+    <style type="text/css">
+        *body{
+          margin: 0;
+          padding: 0;
+        }
+        .first_sec{ 
+          height: 915px;
+          width: 100%;
+          background-image: url('C:/Users/DOG/Desktop/前端/个人主页/880693.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        header{
+          width: 100%;
+          height: 50px;
+        }
+        #nav{
+          background: transparent;          
+        }
+         .glyphicon{
+          font-size: 35px;
+          color: white;
+        }
+        .fix_nav{
+          width: 30px;
+          height: 30px;
+          position: fixed;
+          margin-left:10%;
+          color: #000;
+          font-size: 3rem;
+          z-index: 100;
+          padding: 15px;
+          display: none;
+        }
+        .fix_nav .glyphicon{
+          color: #A6A9BC;
+        }
+        .navbar-default{
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          width: 100%;
+          background: none;
+          padding-top: 15px;
+          border:0;
+        }
+        /*导航条滚动监听添加的样式*/
+        .fixed_top{
+          width: 80%;
+          position: fixed;
+          z-index: 99;
+          border-radius: 15px;
+          /*border:1px solid #54B891;*/
+          margin-left: 10%;
+          background-color: #373737;
+        }
+        #top__link {
+          float: right;
+          margin-top: 15px;
+          width: 450px;
+        }
+        /*导航栏样式*/
+        #nav  a {
+          font-size: 25px;
+          text-decoration: none;
+          color: #eee;
+        }
+        #nav  a:link {
+          color:#8e8787;
+          text-decoration:none;  
+        }
+        #nav  a:visited {
+          color:white;
+        }
+        #nav  a:hover {         
+          color:#413E3E;
+        }
+        #nav ul {  
+          list-style-type: none;
+        }
+        #nav ul li {
+          display: inline;
+          left:  50%；
+        }
+        .catalogue{
+          width: 100%;
+          height: 800px;
+          text-align: center;
+          padding-top: 60px;
+        }
+        #catalogue a{
+          text-decoration: none;
+        }
+        #catalogue a:hover{
+          color: #8e8787;
+        }
+        .catalogue__img{
+          width: 100%;
+          height: 400px;
+        }
+        .name{
+          width: 100%;
+          height: 45px;
+        }
+        .name p{
+          font-size: 27px;
+          font-weight:900;
+          font-family:sans-serif;
+          margin-bottom:0px;
+
+        }
+        .catalogue img{
+          margin-top: 10px;          
+          width: 250px;         
+          height: 250px;
+          border-radius:50%;         
+        }
+        .left__part{
+          width: 50%;
+          height:380px;
+          border-right:5px solid #303030;
+          float: left;
+        }
+        .right__part{
+          width: 50%;
+          height:380px;
+          border-left:2px solid #505050;
+          float:left;
+        }
+        .left__part table tr td{
+          width: 930px;
+          height: 100px;
+          text-align: right;
+          padding-right: 0px;
+        }
+        .right__part table tr td{
+          width: 930px;
+          height: 95px;
+          text-align: left;
+          padding-left: 20px;
+        }
+        .left__part .right__part a a:link {
+          text-decoration:none; 
+        }
+        .left__part__link{
+          font-size: 40px;
+          color: black;
+          text-decoration:none;  
+        }
+        .right__part__link{
+          font-size: 40px;
+          color: black;
+          text-decoration:none;  
+        }
+        .second__sec{
+          width: 100%;
+          height: 700px;
+          padding-top: 40px;
+        }
+        .line:hover{
+          animation:input_hover 0.9s forwards;
+          animation-iteration-count: infinite;
+          animation-direction:alternate;
+        }
+        .line:hover span.line_left{
+          width:200px;
+          transform:scale(0.5);
+        }
+        .line:hover span.line_right{
+          width:200px;
+          transform:scale(0.5);
+        }
+        @keyframes input_hover{
+          0{box-shadow:0px 0px 00px #1abc9c;}
+          100%{box-shadow:0px 0px 15px #1abc9c;}
+        }
+        .l_line,.r_line{
+          display:block;
+          position:absolute;
+          top: 30px;
+          left:50%;
+          width:235px;
+          height:20px;
+        }
+        span.line_left,span.line_right{
+          display:block;
+          position:absolute;
+          width:15px;
+          height:15px;
+          background-color:#434A54;
+          border-radius:10px;
+          transition:all 1s;
+        }
+        .l_line{
+          transform:translateX(-50%);
+        }
+        span.line_left{
+          right:220px;
+          transform:rotateZ(180deg);
+        }
+        .r_line{
+          transform:translateX(-50%);
+        }
+        span.line_right{
+          left:220px;
+          transform:rotateZ(-180deg);
+        }
+        .text-center hr{
+          border: 1px dotted #ccc;
+          margin: 30px auto;
+        }
+        .text-center p{
+          font-size: 24px;
+          font-family: STXihei;
+          font-weight: bold;
+        }
+        /*图片动画属性*/
+        .thumbnail img{
+          background-color:#434A54;
+          transition:all 0.5s;/*动画属性：全部属性、延迟*/
+          cursor:pointer;/*光标*/
+        }
+        .thumbnail img:hover{
+          transform:scale(1.2);
+        }
+        .catalogue__img img {
+          background-color:#434A54;
+          transition:all 0.5s;/*动画属性：全部属性、延迟*/
+          cursor:pointer;/*光标*/
+        }
+        .catalogue__img img:hover{
+          transform:scale(1.2);
+        }
+        .catalogue__img p {
+          transition:all 0.5s;/*动画属性：全部属性、延迟*/
+          cursor:pointer;/*光标*/
+        }
+        .catalogue__img p:hover{
+          transform:scale(1.2);
+        }
+        #thumbnail { 
+          border:none;
+        }
+        .thumbnail img{
+          position: relative;
+          border-radius: 70px;
+        }
+        .thumbnail .caption h3 {
+          text-align: center;
+          font-size: 3rem;
+          font-weight: bold;
+          font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        }
+        /*.question_part{
+          background-image: url('C:/Users/DOG/Desktop/前端/个人主页/cloud.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          height: 600px;
+        }*/
+        .item_top{
+          animation: topeaseinAnimate 1s ease 1;    /*调用已定义好的动画righteaseinAnimate，全程运行时间1S，进入的速度曲线为ease，只播放一次*/
+          /*规定动画的最后状态为结束状态*/
+          animation-fill-mode:forwards;
+        }
+        @keyframes topeaseinAnimate{
+          0%{ transform: translateY(130px); opacity: 0;}   /*在0%时设置文字在想X轴-2000px位移处（左边），透明度为0，也就是看不见文字*/
+          100%{ transform: translateY(0px); opacity: 1;}         /*在100%时设置文字在想X轴0px位移处，也就是原始布局的位置，透明度为1，也就是文字可以看见了*/
+        }
+        .question_one,.question_two{
+          width: 50%;
+          font-size: 20px;
+          margin:0 auto;
+          border-top: 2px solid #36A7F1;
+          /*text-align: center;*/
+          padding-top: 30px;
+          color: #000;
+          background: white;
+          padding-bottom: 75px;
+         }
+        #project code{
+          color: black;
+          font-size: 20px;
+          background: white;
+        }
+        #skills code{
+          color: black;
+          font-size: 20px;
+          background: white;
+        }
+        .btn{
+          float: right;
+        }
+        .third_sec{
+          background-color: #f3f2f3;
+          background-repeat:no-repeat;
+          background-size:cover;
+          padding-top: 60px;
+          color: #000;
+          margin:0 50px;
+        }
+        .third_sec .container{
+          padding-bottom:60px;
+        }
+        #skill_p{
+          font-size: 20px;
+        }
+        .skill_image{
+          padding-top: 30px;
+        }
+        .skill_item{
+          width: 100%;
+          margin: 0 auto;
+          margin-bottom: 20px;
+          /*border-right: 2px solid #e0e0e0;
+          border-bottom: 2px solid #e0e0e0;*/
+          /*background: #f3f2f3;*/
+         /*border-radius:10px;*/
+         /*box-shadow: 1px 1px 1px 1px;*/
+          display: flex;
+          flex-flow: row nowrap;      
+        }
+        .skill_item_text{
+          text-align: center;
+          margin:0px 30px 20px 30px;
+          padding-top: 20px;
+        }
+        .item_right{
+
+          animation: lefteaseinAnimate 1s ease 1;    /*调用已定义好的动画righteaseinAnimate，全程运行时间1S，进入的速度曲线为ease，只播放一次*/
+          /*规定动画的最后状态为结束状态*/
+          animation-fill-mode:forwards;
+        }
+        .item_left{
+          animation: righteaseinAnimate 1s ease 1;    /*调用已定义好的动画righteaseinAnimate，全程运行时间1S，进入的速度曲线为ease，只播放一次*/
+          /*规定动画的最后状态为结束状态*/
+          animation-fill-mode:forwards;
+        }
+        /*定义一个名字为lefteaseinAnimate动画，实现从页面的左边淡入页面效果*/
+        @keyframes lefteaseinAnimate{
+          0%{ transform: translateX(-100px); opacity: 0;}   /*在0%时设置文字在想X轴-2000px位移处（左边），透明度为0，也就是看不见文字*/
+          100%{ transform: translateX(0px); opacity: 1;}         /*在100%时设置文字在想X轴0px位移处，也就是原始布局的位置，透明度为1，也就是文字可以看见了*/
+        }
+        @keyframes righteaseinAnimate{
+          0%{ transform: translateX(100px); opacity: 0;}   /*在0%时设置文字在想X轴2000px位移处（右边），透明度为0，也就是看不见文字*/
+          100%{ transform: translateX(0px); opacity: 1;}      /*在100%时设置文字在想X轴0px位移处，也就是原始布局的位置，透明度为1，也就是文字可以看见了*/
+        }
+        .title{
+          padding:10px 0 0 20px;
+        }
+        .title_left{
+          text-align: right;
+          padding-right: 30px;
+        }
+        .skill_item_img img{
+          width: 120px;
+          height: 100px;
+        }
+        .forth_sec{
+          padding-top: 60px;
+          padding-bottom: 40px;
+          position: relative;
+          margin-bottom: 0;
+          color: black;
+        }
+        .htmleaf-container canvas{
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: -10;
+          width: 100%;
+          height: 100%;
+        }
+        .forth_sec .flex{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content:space-between;
+          position: relative;
+        }
+        .exp_first{
+          width: 250px;
+          height: 120px;
+          position:relative;
+          visibility: hidden;
+        }
+        .exp_first p{
+          margin:8px;
+          font-size: 1.3rem;
+        }
+        .exp_left{
+          width: 390px;
+          height: 490px;
+          margin-left: 50px;
+          position: absolute;
+        }
+        .exp_right{
+          width: 390px;
+          height: 490px;
+          float: right;
+          margin-right: 50px;
+          position: relative;
+        }
+        .left{
+          margin: 20px 0 10px 160px;
+        }
+        .right{
+          margin: 20px 0px 10px 125px;
+        } 
+        .flex .circle{
+          position: relative;
+          left:50%;
+          transform:translateX(-100%);
+          margin-top: 20px;       
+          z-index: 10;
+          height: 300px;
+          width: 300px;
+          border-radius: 150px;
+        }
+
+        .circle{
+          background-image: url('C:/Users/DOG/Desktop/前端/个人主页/1114321.jpg');
+          background-size: 300px 300px;  
+          text-align: center;        
+        }
+        .circle p{
+          font-size: 4rem;
+          font-family: sans-serif;
+          margin:122px auto;
+          text-align: center;
+          color: #000;
+          font-weight: bolder;
+        }
+        .circle em{
+          font-size: 150px;
+          text-align: center;
+          color: white;
+          line-height: 80px;
+        }
+        .fifth_sec {
+          margin-bottom: 14px;
+          color: #2A2929;
+          padding-top: 60px;
+        }
+        .fifth_left ul{
+          margin: 30px 0 0 -50px;
+        }
+        .fifth_left li{
+          list-style: none;
+          margin:10px;
+        }
+        .fifth_left a{
+          text-decoration: none;
+        }
+        .fifth_left p{
+          margin-top: 80px;
+        }
+        .fifth_left img{
+          width: 20px;
+        }
+        footer strong{
+          font-size: 3rem;
+          color: #000;
+        }
+        @keyframes fadeIn{
+          0% {
+           opacity: 0;
+          }
+          100% {
+           opacity: 1;
+          }
+        }
+
+    </style>
+
+    <link href="C:\Users\DOG\Desktop\前端\bootstrap3.3.7\css\bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shiRespond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+       <div class="contain" >
+          <div class="first_sec">       
+           <header>
+              <div class="fix_nav"><span class="glyphicon glyphicon-send"></div>
+              <nav class=" navbar-default" id="nav">
+               <div class="container-fluid">
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <span class="glyphicon glyphicon-send"></span>
+               </div>
+               <div class="collapse navbar-collapse top__link" id="top__link"">
+                   <ul class="nav navbar-nav navbar-right">
+                       <li><a onclick="document.getElementById('aboutme').scrollIntoView()">关于我</a></li>
+                       <li><a onclick="document.getElementById('project').scrollIntoView()">项目</a></li>
+                       <li><a onclick="document.getElementById('skills').scrollIntoView()">技能</a></li>
+                       <li><a onclick="document.getElementById('contact').scrollIntoView()">联系我</a></li>                       
+                   </ul>
+               </div>
+              </div>
+              </nav>
+           </header>
+           <div class="catalogue" id="catalogue">
+               <div class="catalogue__img">
+                    <img src="C:\Users\DOG\Desktop\前端\个人主页\11.jpg">
+                    <div class="name" id="name">
+                        <p>许金伦</p>
+                        <p>The harder you work,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the more luck you have.</p>
+                    </div>
+               </div>
+               <div class="left__part">
+                    <table>
+                      <tr><td>&nbsp;</td></tr>
+                      <tr>
+                          <td><a class="left__part__link" onclick="document.getElementById('skills').scrollIntoView()">技能</a></td>
+                      </tr>
+                      <tr><td>&nbsp;</td></tr>
+                      <tr> 
+                          <td><a class="left__part__link" onclick="document.getElementById('contact').scrollIntoView()">联系我</a></td>
+                      </tr>
+                    </table> 
+               </div>               
+               <div class="right__part">
+                    <table>
+                      <tr>
+                          <td><a class="left__part__link" onclick="document.getElementById('project').scrollIntoView()">项目</a></td>
+                      </tr>
+                      <tr><td>&nbsp;</td></tr>
+                      <tr> 
+                          <td><a class="left__part__link" onclick="document.getElementById('aboutme').scrollIntoView()">关于我</a></td>
+                      </tr>
+                      <tr><td>&nbsp;</td></tr>
+                    </table>     
+               </div>
+           </div>
+          </div>
+          <div class="second__sec" id="aboutme">
+              <div class="container">
+                 <div class="row">
+                     <div class="text-center col-lg-12">
+                         <div class="line">
+                              <div class="l_line">
+                                  <span class="line_left"></span>
+                              </div>
+                              <div class="r_line">
+                                  <span class="line_right"></span>
+                              </div> 
+                         </div>     
+                         <h2>Who I am ?</h2>                         
+                         <hr>
+                         <p>我是一名普普通通的大学生，甘于平凡，不屈于命运</p>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-4">
+                       <div class="thumbnail" id="thumbnail">
+                          <img src="C:/Users/DOG/Desktop/前端/个人主页/book.jpg">
+                          <div class="caption">
+                             <h3>学习</h3>
+                             <ul>
+                                 <li>古人讲：鸟欲高飞先振翅，人求上进先读书</li>
+                                 <li>我觉得学海无涯，只能时时不忘学习</li>
+                                 <li>偶尔看点课外书来充实自己</li>
+                             </ul>
+                          </div>
+                       </div>
+                     </div>
+                     <div class="col-md-4">
+                       <div class="thumbnail" id="thumbnail">
+                          <img src="C:/Users/DOG/Desktop/前端/个人主页/guitar.jpg">
+                          <div class="caption">
+                             <h3>生活</h3>
+                             <ul>
+                                 <li>生活是自己的，活出自己的人生才是是最精彩的</li>
+                                 <li>喜欢运动，喜欢听歌，喜欢电影</li>
+                                 <li>喜欢美食，偶尔有下厨的激情</li>
+                                 <li>钟爱旅行，每一次的出行都是美丽的回忆</li>
+                             </ul>
+                          </div>
+                       </div>
+                     </div>
+                     <div class="col-md-4">
+                       <div class="thumbnail" id="thumbnail">
+                          <img src="C:/Users/DOG/Desktop/前端/个人主页/公益惠来.jpg">
+                          <div class="caption">
+                             <h3>公益</h3>
+                             <ul>
+                                 <li>热心公益，常怀感恩的心</li>
+                                 <li>多次参加公益活动</li>
+                                 <li>我们常常无法做伟大的事，但我们可以用伟大的爱去做些小事。</li>
+                             </ul>
+                          </div>
+                       </div>
+                     </div>
+                 </div>
+              </div>
+          </div>
+          <div class="question_part" id="skills">
+              <div class="question_one">
+                 <p>A.Please answer this question to see part I</p>
+                 <code>function f1(){ <br>
+                      &nbsp;var n = 0;<br>
+                      &nbsp;function f2() {<br>
+                      &nbsp;&nbsp;&nbsp;n++;<br>
+                      &nbsp;&nbsp;&nbsp;console.log(n);<br>
+                    &nbsp;&nbsp;}<br>
+                    &nbsp;f2(); <br>
+                    &nbsp;f2(); <br>
+                    }<br>
+                    f1(); </code><br>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_one" value="option1" >A. 0,0
+                 </label>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_one" value="option2">B. 0,1
+                 </label>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_one" value="option3">C. 1,1
+                 </label>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_one" value="option4" checked="checked">D. 1,2
+                 </label>
+                 <button class="btn btn-primary" id="btn1">OK</button>
+                 <div id="error_msg_one"></div>
+              </div>
+          </div>
+          <div class="third_sec part">
+              <div class="container">
+                 <div class="row">
+                      <div class="text-center col-lg-12">
+                          <h2>SKILLS</h2>
+                          <p id="skill_p">前端开发需要一个持续和长期的学习，需要在各种领域都有充足的知识储备，需要对新技术的学习保持热情。</p>
+                          <hr>
+                      </div>
+                 </div>
+                 <div class="skill_image">
+                      <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                              <div class="skill_item">
+                                 <div class="skill_item_text">
+                                      <p>熟悉HTML5新特性，能够语义化的编写HTML，熟练使用div+css布局，使用过sublime text编译器。</p>
+                                 </div>
+                                 <div class="skill_item_img">
+                                      <img src="C:/Users/DOG/Desktop/前端/个人主页/html.jpg">
+                                 </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6">
+                              <div class="title">
+                                <h3>HTML</h3>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                              <div class="title title_left">
+                                <h3>CSS</h3>
+                              </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6">
+                              <div class="skill_item">
+                                 <div class="skill_item_img">
+                                      <img src="C:/Users/DOG/Desktop/前端/个人主页/css.jpg">
+                                 </div>
+                                 <div class="skill_item_text">
+                                      <p>掌握CSS3新特性，了解css雪碧图，css预处理器（less），掌握bootstrap，具备一定的浏览器兼容性处理的能力</p>
+                                 </div>                                 
+                              </div>
+                          </div>                          
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                              <div class="skill_item">
+                                 <div class="skill_item_text">
+                                      <p>理解 Javascript DOM，BOM等技术，对 Javascript 框架应用(如 jQuery)有一定了解,目前正在深入中</p>
+                                 </div>
+                                 <div class="skill_item_img">
+                                      <img src="C:/Users/DOG/Desktop/前端/个人主页/js.jpg">
+                                 </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6">
+                              <div class="title">
+                                <h3>JS</h3>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                              <div class="title title_left">
+                                <h3>框架</h3>
+                              </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6">
+                              <div class="skill_item">
+                                 <div class="skill_item_img">
+                                      <img src="C:/Users/DOG/Desktop/前端/个人主页/web.jpg">
+                                 </div>
+                                 <div class="skill_item_text">
+                                      <p>使用过vue（vuex，vue-router，vue-resourse）和gulp，webpack等框架和工具，使用过express写过简易的node后台，了解域名和服务器部署(将来)</p>
+                                 </div>                                 
+                              </div>
+                          </div>                          
+                      </div>
+                 </div>
+              </div>
+          </div>
+          <div class="question_part" id="project">
+              <div class="question_two">
+                 <p>B.Please answer this question to see part II</p>
+                 <code>(function f3(){ <br>
+                     &nbsp;console.log(a)<br>
+                     &nbsp;function f4() {<br>
+                     &nbsp;&nbsp;&nbsp;var a=1;<br>
+                     &nbsp;&nbsp;&nbsp;function f4(){;<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;return 2<br>
+                   &nbsp;&nbsp;} <br>
+                   &nbsp;} <br>
+                   })();<br>
+                 </code><br>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_two" value="option1" >A. 1,2
+                 </label>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_two" value="option2">B. undefined,undefined
+                 </label><br>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_two" value="option3">C. 1,undefined
+                 </label>
+                 <label class="radio-inline">
+                 <input type="radio" name="answer_two" value="option4" checked="checked">D. undefined,2
+                 </label>
+                 <button class="btn btn-primary" id="btn2">OK</button>
+                 <div id="error_msg_two"></div>
+              </div>
+          </div>
+          <div class="forth_sec  htmleaf-container" id="projects">
+              <div class="container">
+                 <div class="row">
+                     <div class="text-center col-lg-12">
+                         <h2>PROJECTS</h2>
+                         <p>此区域待开发(小的不才，暂时没有什么项目)</p>
+                         <hr>
+                     </div>
+                 </div>
+                 <div class="row flex">                 
+                     <div class="exp_left ">
+                        <div class="exp_first left ">
+                            <p>单页ps应用：获取本地图片并对图片进行简单处理，同时可以导出图片</p>
+                        </div>
+                        <div class="exp_first right" >
+                            <p>别踩白块：使用原生js写的一个小游戏<a href="http://wmxfe.com/baikuai.html">demo</a></p>
+                        </div>
+                        <div class="exp_first left " >
+                            <p>选课管理系统：负责界面设计、功能策划和需求分析，编写了全部前端代码，实现了密码校验登录，修改密码，选课和退选，成绩录入，公告发布等功能<a href="https://weimingxinas.github.io/student-message-manage-system/login.html">demo</a> </p>
+                        </div>
+                     </div>
+                     <div class="circle ">
+                     </div>
+                     <div class="exp_right ">
+                        <div class="exp_first right">
+                            <p>使用vue模仿腾讯imweb网页<a href="http://wmxfe.com/imweb.html">demo</a></p>
+                        </div>
+                        <div class="exp_first left">
+                            <p>使用vue+axios+vue-router+webpack+element ui完成融云后台管理系统界面</p>
+                        </div>
+                        <div class="exp_first right">
+                            <p>正在着手百度前端技术学院的任务……</p>
+                        </div>
+                     </div>
+                 </div>
+              </div>
+          </div>
+          <div class="fifth_sec" id="contact">
+              <div class="container">
+                 <div class="row">
+                     <div class="text-center col-lg-12">
+                         <h2>contact me</h2>
+                         <p></p> 
+                     </div>              
+                 </div>
+                 <div class="row">
+                     <div class="col-md-6">
+                         <img src="C:/Users/DOG/Desktop/前端/个人主页/wofe.jpg" alt="cloud">
+                     </div>
+                     <div class="col-md-6 fifth_left">
+                         <ul>
+                             <li>
+                                <a href="https://github.com/isnjay"><img src="C:/Users/DOG/Desktop/前端/个人主页/github.png" alt="github">isnjay</a>
+                             </li>
+                             <li>
+                                <a href="https://mail.qq.com/"><img src="C:/Users/DOG/Desktop/前端/个人主页/email.png" alt="e-mail">335917312@qq.com</a>
+                             </li>
+                         </ul>
+                         <p>由衷感谢那些在我前端成长道路上给予我帮助指导的人<br>是你们的支持和鼓励让我坚持下去<br>因为你们我才能继续前行～<br>
+                         <a href="http://www.wmxfe.com/">wmxfe.com</a><br>
+                         All Rights Reserved @2018-2019<br>  粤ICP备17016071号
+                         </p>
+                     </div>
+                 </div>
+              </div>  
+          </div>
+          <footer>
+              <div class="text-center">
+                  <strong>~Thanks~</strong>
+              </div>    
+          </footer>
+       </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="C:/Users/DOG/Desktop/前端/bootstrap3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    
+    $(document).ready(function(){
+
+      var height= $(window).height();
+      $('#first_sec').css('height',height+'px');
+      $(window).scroll(function() {
+          if ($(window).scrollTop()>500) {
+                $('.fix_nav').show();
+          }
+          else{
+                $('#nav').show();
+                $('#nav').removeClass('fixed_top');
+                $('.fix_nav').hide();
+
+          }
+      });
+      var flag1=true;
+      //点击打开和关闭导航条，打开5秒后自动消失
+      $('.fix_nav').on('click',function(){
+          if(flag1){
+             $('#nav').fadeIn();
+             $('#nav').addClass('fixed_top');
+             flag1=false;
+             if(!flag1){
+                $('#nav').on('mouseleave',function(){
+                    $('#nav').hide();
+                    $('#nav').removeClass('fixed_top');
+                    flag1=true;
+                })
+                // var t1=setTimeout(function () {
+                //  $('.fixed_top').hide(); 
+                //  flag1=true;
+                //  window.clearTimeout(t1);
+                //  }, 5000); 
+             }   
+          }
+          else{
+                $("#nav").hide();
+                $("#nav").removeClass('fixed_top');
+                flag1=true;
+          }
+      });
+      $('.third_sec').hide(); 
+      $('.forth_sec').hide();
+      var flag =true;
+      $('#btn1').on('click',function(){
+          var chkRadio1= $('input[name="answer_one"]:checked').val();
+               if(chkRadio1==='option4'){
+                 $('.third_sec').fadeIn();
+                 flag = false;
+                 $(window).scrollTop($('.third_sec').offset().top);
+                /* var num = 0,
+                     $skill_item=$('.skill_item');
+                     $skill_item.css('visibility','hidden');
+                 var t2=setInterval(function(){
+                     if (num==0||num==2) {
+                         $skill_item.eq(num).css('visility','visible').addClass('item_right');                         
+                     }else{
+                         $skill_item.eq(num).css('visility','visible').addClass('item_left');
+                     }
+                     num++;
+                     if(num>3){
+                        return clearInterval(t2);
+                     }
+                 },500);*/
+                 $('#error_msg_one').html('');
+                 $('#error_msg_one').append('<p>答对了，你真棒！</p>');
+
+               }else{
+                 // console.log("1")
+                 $('#error_msg_one').html('');
+                 $('#error_msg_one').append('<p>再试一次哦！</p>');
+               }
+
+      })
+      $('#btn2').on('click',function () {
+          var chkRadio2=$('input[name="answer_two"]:checked').val();
+              if (!flag) {
+                  if (chkRadio2==='option4') {
+                     $('.forth_sec').fadeIn();
+                     $(window).scrollTop($('.forth_sec').offset().top);
+                  }else{
+                     $('#error_msg_two').append('<p>再试一次哦！</p>');
+                  }
+              }else{
+                  $(window).scrollTop($('#skills').offset().top);
+              }
+      })
+    });
+    var aboutme= (function(){
+          var flag=true,
+          $thumbnail=$('.thumbnail');
+          $thumbnail.css('visibility',"hidden");
+          $(window).scroll(function(){
+              var num=0;                          
+              if($(window).scrollTop()>400){  
+                  if (flag) {
+                      var t=setInterval(  function () { 
+                          $thumbnail.eq(num).css('visibility',"visible").addClass('item_top');
+                          num++;
+                          if (num>2) {
+                              return clearInterval(t);
+                          }
+                          // console.log(num);
+                      }, 300);
+                      flag=false;
+                  }            
+              }
+          });
+    })();
+    var project=(function(){
+          var flag=true,
+              $leftin=$('.flex').children().eq(0).children(),
+              $rightin=$('.flex').children().eq(2).children(),
+              a=[],b=[],c=[];
+              a.push($leftin)
+              b.push($rightin)
+              c.push(a[0])
+              c.push(b[0])
+          $(window).scroll(function(){
+              var num=0;
+              if($(window).scrollTop()>3000){
+                 if(flag){
+                      var t=setInterval(function(){
+                         if (num<3){
+                          $(c[0][num]).css('visibility','visible').addClass('item_top');
+                         }else{
+                          $(c[1][5-num]).css('visibility','visible').addClass('item_top');
+                         }
+                         num++;
+                         $('.circle').html('<p><em>'+(7-num)+'</em><p>');
+                         if(num>6){
+                           $('.circle').html('<p>奋斗在路上！</P>');
+                           return clearInterval(t);
+                         }
+                      },1000);
+                      flag=false;
+                 }
+              }
+          })
+    })();
+    </script>
+  </body>
+</html>
